@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { ModeToggle } from "../ui/mood-toggle";
 
 const Navbar: React.FC = () => {
+
   return (
     <nav className="flex justify-between items-center bg-gray-300 text-white p-4 shadow-md">
       {/* Logo */}
