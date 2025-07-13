@@ -17,21 +17,24 @@ import { CalendarIcon } from "lucide-react"
 import { useAppDispatch } from "@/redux/hooks"
 import { addTask } from "@/redux/features/task/taskSlice"
 import type { ITask } from "@/types"
+import { useState } from "react"
 
 
 
 export function AddTaskCard() {
-  const form = useForm()
+  const [open, setOpen] = useState(false)
+  const form = useForm<ITask>()
   const dispatch = useAppDispatch();
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     console.log(data)
     dispatch(addTask(data as ITask))
-
+    setOpen(false)
+    form.reset()
   }
 
   return (
-    <Dialog>
+    <Dialog open={open}   onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button>Add Task</Button>
       </DialogTrigger>
@@ -83,9 +86,9 @@ export function AddTaskCard() {
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="High">High</SelectItem>
-                      <SelectItem value="Medium">Medium</SelectItem>
-                      <SelectItem value="Low">Low</SelectItem>
+                      <SelectItem value="high">High</SelectItem>
+                      <SelectItem value="medium">Medium</SelectItem>
+                      <SelectItem value="low">Low</SelectItem>
                     </SelectContent>
                   </Select>
                 </FormItem>
