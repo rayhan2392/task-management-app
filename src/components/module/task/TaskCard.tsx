@@ -23,7 +23,7 @@ const TaskCard = ({ task }: Iprops) => {
             <p className="text-gray-600 mb-4">{task.description}</p>
 
             <div className="flex justify-between items-center text-sm text-gray-500">
-                <span>📅 Due: {task.dueDate}</span>
+                <span>📅 Due: {}</span>
                 <span className={task.isCompleted ? 'text-green-600 font-semibold' : 'text-amber-600 font-semibold'}>
                     {task.isCompleted ? '✅ Completed' : '⏳ Pending'}
                 </span>

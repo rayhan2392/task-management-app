@@ -11,30 +11,23 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
 import { cn } from "@/lib/utils"
-import { useForm } from "react-hook-form"
+import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form"
 import { format } from "date-fns"
 import { CalendarIcon } from "lucide-react"
+import { useAppDispatch } from "@/redux/hooks"
+import { addTask } from "@/redux/features/task/taskSlice"
+import type { ITask } from "@/types"
 
-type TaskFormValues = {
-  title: string
-  description: string
-  priority: string
-  dueDate: Date
-}
+
 
 export function AddTaskCard() {
-  const form = useForm<TaskFormValues>({
-    defaultValues: {
-      title: '',
-      description: '',
-      priority: '',
-      dueDate: new Date()
+  const form = useForm()
+  const dispatch = useAppDispatch();
 
-    }
-  })
-
-  const onSubmit = (data: TaskFormValues) => {
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
     console.log(data)
+    dispatch(addTask(data as ITask))
+
   }
 
   return (
